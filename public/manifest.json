@@ -1,6 +1,8 @@
 {
     "name": "Fireship",
     "short_name": "Fireship",
+    "description": "A demonstration PWA showcasing modern web capabilities and best practices for 2025. Includes examples of advanced offline support, push notifications, hardware access, and more.",
+    "categories": ["education", "demonstration", "technology"],
     "start_url": "/?home=true",
     "shortcuts": [
       {
@@ -20,12 +22,14 @@
     ],
     "icons": [
       {
-        "src": "logo.png",
+        "src": "/assets/logo.png",
         "sizes": "512x512",
         "type": "image/png",
         "purpose": "maskable any"
       }
     ],
+    "screenshots": [],
+    "prefer_related_applications": false,
     "share_target": {
       "action": "/share-photo",
       "method": "POST",
