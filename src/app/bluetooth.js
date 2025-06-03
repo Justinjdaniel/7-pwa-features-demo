@@ -1,8 +1,15 @@
-const button = document.getElementById('ble');
-button.addEventListener('click', (event) => connectBluetooth());
+// Refactored content of src/app/bluetooth.js
+export function initBluetooth() {
+    const button = document.getElementById('ble');
+
+    if (button) {
+        button.addEventListener('click', () => connectBluetooth());
+    } else {
+        console.warn('Bluetooth button not found. Skipping init.');
+    }
+}
 
 async function connectBluetooth() {
-
     // Connect Device
     const device = await navigator.bluetooth.requestDevice({ filters: [{ services: ['heart_rate'] }] });
     const server = await device.gatt.connect();
@@ -17,7 +24,6 @@ async function connectBluetooth() {
     hrMeasurement.addEventListener('characteristicvaluechanged', (e) => {
         console.log(parseHeartRate(e.target.value));
     });
-
 }
 
 function parseHeartRate(value) {
