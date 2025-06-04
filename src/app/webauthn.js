@@ -39,7 +39,7 @@ export function initWebAuthn() {
                 challenge: challenge,
                 rp: {
                     name: 'Demo PWA',
-                    // id: window.location.hostname, // Important for security, usually set by server
+                    id: window.location.hostname, // Important for security, usually set by server
                 },
                 user: {
                     id: userId,
