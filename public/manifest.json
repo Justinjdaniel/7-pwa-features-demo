@@ -1,6 +1,6 @@
 {
-    "name": "Fireship",
-    "short_name": "Fireship",
+    "name": "PWA Demo",
+    "short_name": "PWA",
     "description": "A demonstration PWA showcasing modern web capabilities and best practices for 2025. Includes examples of advanced offline support, push notifications, hardware access, and more.",
     "categories": ["education", "demonstration", "technology"],
     "start_url": "/?home=true",

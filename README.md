@@ -8,5 +8,6 @@ Build a basic [PWA in 100 Seconds](https://youtu.be/sFsRylCQblw)
 
 ```
 git clone <this-repo>
-npx serve
+npm install
+npm run dev
 ```
