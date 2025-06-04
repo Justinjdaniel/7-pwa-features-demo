@@ -97,7 +97,7 @@ export function initWebAuthn() {
                 allowCredentials: allowCredentials, // Can be omitted if relying on discoverable credentials (resident keys)
                 timeout: 60000,
                 userVerification: 'preferred',
-                // rpId: window.location.hostname, // Usually set by server
+                rpId: window.location.hostname, // Usually set by server
             };
 
             const assertion = await navigator.credentials.get({ publicKey: publicKeyCredentialRequestOptions });
