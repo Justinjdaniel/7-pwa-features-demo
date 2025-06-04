@@ -6,6 +6,7 @@ This document outlines the core features of this PWA, configuration options, and
 (To be filled, e.g., Service Workers, Manifest, Offline Storage)
 
 ## Configuration Options
+- The service worker (`sw.js`) is automatically generated and can be further customized by `append-sw-push-listener.js`, which idempotently adds features like push and sync event listeners.
 (To be filled, e.g., Environment variables, build settings)
 
 ## Usage Scenarios
