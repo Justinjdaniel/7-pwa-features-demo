@@ -32,19 +32,19 @@ module.exports = {
           maxAgeSeconds: 60 * 60 * 24 * 365 // 1 year
         }
       }
-    },
-    {
-      // Example for caching API responses (if we had an API)
-      // urlPattern: /^https:\/\/api\.example\.com\/data/,
-      // handler: 'NetworkFirst',
-      // options: {
-      //   cacheName: 'api-cache',
-      //   networkTimeoutSeconds: 10, // Time to wait for network before falling back to cache
-      //   expiration: {
-      //     maxEntries: 50,
-      //     maxAgeSeconds: 5 * 60 // 5 minutes
-      //   }
-      // }
     }
+    // {
+    //   // Example for caching API responses (if we had an API)
+    //   // urlPattern: /^https:\/\/api\.example\.com\/data/,
+    //   // handler: 'NetworkFirst',
+    //   // options: {
+    //   //   cacheName: 'api-cache',
+    //   //   networkTimeoutSeconds: 10, // Time to wait for network before falling back to cache
+    //   //   expiration: {
+    //   //     maxEntries: 50,
+    //   //     maxAgeSeconds: 5 * 60 // 5 minutes
+    //   //   }
+    //   // }
+    // }
   ]
 };

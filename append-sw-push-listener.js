@@ -3,6 +3,9 @@ const path = require('path');
 
 const swPath = path.join(__dirname, 'dist', 'sw.js'); // More robust path construction
 
+const pushMarkerStart = '// --- Appended Push Event Listener ---';
+const syncMarkerStart = '// --- Appended Sync Event Listener ---';
+
 const pushListenerCode = `
 
 // --- Appended Push Event Listener ---
@@ -57,17 +60,43 @@ self.addEventListener('sync', event => {
 `;
 
 try {
-  // Check if sw.js exists before trying to append
+  // Check if sw.js exists
   if (fs.existsSync(swPath)) {
-    fs.appendFileSync(swPath, pushListenerCode + syncListenerCode); // Append both listeners
-    console.log('Successfully appended push and sync listeners to service worker:', swPath);
+    let swContent = fs.readFileSync(swPath, 'utf8');
+    let appendedPush = false;
+    let appendedSync = false;
+
+    // Check for push listener
+    if (!swContent.includes(pushMarkerStart)) {
+      fs.appendFileSync(swPath, pushListenerCode);
+      console.log('Successfully appended push listener to service worker:', swPath);
+      appendedPush = true;
+    } else {
+      console.log('Push listener already exists in service worker. Skipping appending.');
+    }
+
+    // Check for sync listener
+    // Need to re-read the file if push listener was added
+    if (appendedPush) {
+      swContent = fs.readFileSync(swPath, 'utf8');
+    }
+    if (!swContent.includes(syncMarkerStart)) {
+      fs.appendFileSync(swPath, syncListenerCode);
+      console.log('Successfully appended sync listener to service worker:', swPath);
+      appendedSync = true;
+    } else {
+      console.log('Sync listener already exists in service worker. Skipping appending.');
+    }
+
+    if (!appendedPush && !appendedSync) {
+      console.log('Both push and sync listeners already exist. No changes made.');
+    }
+
   } else {
     console.error('Service worker file not found at:', swPath, '. Listeners not appended. Ensure Workbox has generated it first.');
-    // Optionally, exit with an error code if this is critical
-    // process.exit(1);
+    // process.exit(1); // Optional: exit if critical
   }
 } catch (error) {
-  console.error('Error appending listeners to service worker:', error);
-  // Optionally, exit with an error code
-  // process.exit(1);
+  console.error('Error processing service worker listeners:', error);
+  // process.exit(1); // Optional: exit with an error code
 }
